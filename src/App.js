@@ -1,24 +1,16 @@
-import logo from './logo.svg';
-import './App.css';
+import Lotofacil from "./pages/Lotofacil";
+import './styles/lotofacil.css';
+import Provider from './context/Provider';
+import Table from "./components/Table";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Provider>
+      <main>
+        <Lotofacil />
+        <Table />
+      </main>
+    </Provider>
   );
 }
 

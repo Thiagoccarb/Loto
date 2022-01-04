@@ -1,0 +1,9 @@
+main table thead th, main table tbody td {
+  margin: 0;
+  border: solid 1px black;
+  text-align: center;
+}
+
+main table {
+  margin: 30px auto;
+}

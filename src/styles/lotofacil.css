@@ -1,0 +1,51 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+main section {
+  align-items: center;
+  background-color: rgb(231, 231, 106);
+  border: 2px solid purple;
+  border-radius: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 50px  auto;
+  height: 400px;
+  width: 250px;
+}
+
+main section div {
+  align-items: center;
+  background-color: rgb(255, 255, 255);
+  border: 2px solid purple;
+  color: purple;
+  display: flex;
+  justify-content: center;
+  margin: 0 10px 0 10px;
+  height: 30px;
+  width: 23px;
+}
+
+main span {
+  display: block;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-weight: 700;
+  color: black;
+  margin: 10px;
+  text-align: center;
+}
+
+main button {
+  background-color: blue;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  display: block;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-weight: 700;
+  margin:  0 auto;
+  padding: 5px;
+  text-align: center;
+}
