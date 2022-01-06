@@ -19,7 +19,6 @@ function LotoNumber({ number, isActive }) {
   const onClick = ({ target }) => {
     const value = parseInt(target.innerHTML, 10);
     buttonAttr[value] = !buttonAttr[value];
-    console.log(isActive)
     const validate = numbers.some((el) => el === value);
     if (validate) return setNumbers(numbers.filter((el) => el !== value));
     return setNumbers([...numbers, value]);

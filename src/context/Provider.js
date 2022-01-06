@@ -27,31 +27,9 @@ const LotoProvider = ({ children }) => {
       .sort((a, b) => b.Acertos - a.Acertos))
   };
 
-  const handleChecked = ({ target }) => {
-    const element = target.firstChild
-    element.checked = !element.checked;
-    if (element.checked) {
-      return target.style.backgroundColor = 'rgb(117, 114, 114)';
-    }
-    return target.style.backgroundColor = 'white';
-  }
-
-  const selectedNumbers = ({ target }) => {
-    handleChecked({ target });
-    const element = target.firstChild
-    const number = parseInt(target.innerText, 10);
-    const validate = numbers.some((el) => el === number);
-    element.style.backgroundColor = 'white';
-    if (validate) {
-      return setNumbers(numbers.filter((e) => e !== number));
-    }
-    return setNumbers([...numbers, number]);
-  };
-
   const context = {
     numbers,
     results,
-    selectedNumbers,
     check,
     setNumbers,
     buttonAttr,

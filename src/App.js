@@ -1,16 +1,18 @@
 import Lotofacil from "./pages/Lotofacil";
 import './styles/lotofacil.css';
-import Provider from './context/Provider';
 import Table from "./components/Table";
+import Buttons from "./components/Buttons";
+import Counter from "./components/Counter";
+
 
 function App() {
   return (
-    <Provider>
       <main>
         <Lotofacil />
+        <Counter />
+        <Buttons />
         <Table />
       </main>
-    </Provider>
   );
 }
 
