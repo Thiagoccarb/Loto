@@ -6,7 +6,7 @@ import draw from '../sorteios';
 const LotoProvider = ({ children }) => {
   const [numbers, setNumbers] = useState([]);
   const [results, setResults] = useState([]);
-  const [sortBy, setSortBy] = useState([]);
+  const [buttonAttr, setButtonAttr] = useState({});
 
 
   const check = (selectedNumbers) => {
@@ -54,6 +54,8 @@ const LotoProvider = ({ children }) => {
     selectedNumbers,
     check,
     setNumbers,
+    buttonAttr,
+    setButtonAttr
   };
 
   return (
