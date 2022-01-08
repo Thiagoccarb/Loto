@@ -7,7 +7,16 @@ const LotoProvider = ({ children }) => {
   const [numbers, setNumbers] = useState([]);
   const [results, setResults] = useState([]);
   const [buttonAttr, setButtonAttr] = useState({});
+  const [orderBy, setOrderBy] = useState('');
 
+  const sort = () => {
+      const sortedResults = results.sort((a, b) => {
+        const fieldA = a[orderBy];
+        const fieldB= b[orderBy];
+        return fieldB - fieldA;
+      });
+      return sortedResults;
+  }
 
   const check = (selectedNumbers) => {
     let array = [];
@@ -23,17 +32,20 @@ const LotoProvider = ({ children }) => {
       let obj = { Acertos: count, Concurso };
       array = [...array, obj]
     })
-    setResults(array.filter((el) => el.Acertos >= 12)
-      .sort((a, b) => b.Acertos - a.Acertos))
+    setResults(array.filter((el) => el.Acertos >= 12))
   };
 
   const context = {
     numbers,
     results,
+    setResults,
     check,
     setNumbers,
     buttonAttr,
-    setButtonAttr
+    setButtonAttr,
+    orderBy,
+    setOrderBy,
+    sort
   };
 
   return (

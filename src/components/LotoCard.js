@@ -12,7 +12,7 @@ color: #9B4874;
 display: flex;
 flex-direction: column;
 justify-content: center;
-height: 100vh;
+height: 70vh;
 margin: 30px auto;
 width: 300px
 `;
@@ -36,7 +36,7 @@ display: flex;
 flex-wrap: wrap;
 flex-grow: 1;
 justify-content: center;
-margin: 5px;
+margin: 25px;
 width: 100%;
 `;
 

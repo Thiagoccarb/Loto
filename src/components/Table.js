@@ -3,8 +3,10 @@ import LotoContext from '../context/LotoContext';
 import '../styles/table.css';
 
 function Table() {
-  const { results } = useContext(LotoContext);
-  const headers = ['acertos', 'concurso']
+  const headers = ['acertos', 'concurso'];
+  const { results, orderBy, sort } = useContext(LotoContext);
+  const data = orderBy ? sort() : results;
+
   const table = (
     <table>
       <thead>
@@ -42,7 +44,7 @@ function Table() {
     </table >
   )
   return (
-    results.length > 0 && table
+    data.length > 0 && table
     // <table>
     //   <thead>
     //     <tr>

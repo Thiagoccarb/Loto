@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import styled from 'styled-components';
 import LotoContext from '../context/LotoContext';
 
@@ -24,6 +24,9 @@ width: 100px
 
 const Button = styled.button`
 background-color: blue;
+&:disabled {
+  background-color: gray;
+}
 &:hover {
   background-color: darkblue;
 }
@@ -37,13 +40,28 @@ transition: 0.2s linear;
 width: 100px
 `;
 
-function CheckButton() {
+function Buttons() {
   const {
     check,
     numbers,
     setNumbers,
     buttonAttr,
+    setOrderBy
   } = useContext(LotoContext);
+
+  const [radio, setRadio] = useState('');
+  // const sort = () => {
+  //   if (orderBy) {
+  //     const sortedResults = results.sort((a, b) => {
+  //       const fieldA = a[orderBy];
+  //       const fieldB= b[orderBy];
+  //       return fieldB - fieldA;
+  //     });
+  //     return sortedResults;
+  //   }
+  //   return results;
+  // }
+
   return (
     <>
       <Div1>
@@ -53,8 +71,9 @@ function CheckButton() {
           <Radio
             id='acerto'
             type='radio'
-            value='Acerto'
+            value='Acertos'
             name='radio'
+            onChange={(e) => setRadio(e.target.value)}
           />
           Acerto
         </Label>
@@ -66,13 +85,20 @@ function CheckButton() {
             type='radio'
             value='Concurso'
             name='radio'
+            onChange={(e) => setRadio(e.target.value)}
           />
           Concurso
         </Label>
+        <Button
+          onClick={ () => setOrderBy(radio)}
+          disabled={!radio}
+        >
+          Ordenar
+        </Button>
       </Div1>
       <Div>
         <Button
-          onClick={() => check(numbers)}
+          onClick={ () => check(numbers) }
         >
           Verificar
         </Button>
@@ -91,4 +117,4 @@ function CheckButton() {
   )
 };
 
-export default CheckButton;
+export default Buttons;
