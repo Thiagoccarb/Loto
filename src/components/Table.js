@@ -1,65 +1,70 @@
-import React, { useContext } from 'react'
+import React, { useContext } from 'react';
+import styled, { css } from 'styled-components';
 import LotoContext from '../context/LotoContext';
 import '../styles/table.css';
+import standardDeviation from '../helpers/standardDeviation';
+
+const Div = styled.div`
+border: 1px solid gray; 
+margin: 0 auto;
+text-align: center;
+${props => props.acertos === 15 && css`
+  background-color: green;
+`}
+${props => props.acertos === 14 && css`
+  background-color: yellow;
+`}
+`;
+
+const Section = styled.section`
+border: 2px solid gray; 
+margin: 10px auto;
+overflow: scroll;
+text-align: center;
+width: 250px;
+height: 500px;
+`;
+
+const Span = styled.span`
+margin: 0;
+text-align: center;
+width: 100%;
+`;
+
+const Title = styled.h1`
+text-align: center;
+`;
 
 function Table() {
-  const headers = ['acertos', 'concurso'];
   const { results, orderBy, sort } = useContext(LotoContext);
   const data = orderBy ? sort() : results;
 
+  const std = standardDeviation();
+
   const table = (
-    <table>
-      <thead>
-        <tr>
-          {
-            headers.map((el, i) => (
-              <th
-                key={i}
-              >
-                {el}
-              </th>
-            ))
-          }
-        </tr>
-      </thead>
-      <tbody>
+    <>
+      <Title>Resultado</Title>
+      <Section>
         {
-          results.map((e, ind) => (
-            <tr
-              key={ ind }
+          data.map((result) => (
+            <Div
+              acertos={result.Acertos}
             >
               {
-                Object.values(e).map((ele, index) => (
-                  <td
-                    key={ index }
-                  >
-                    {ele}
-                  </td>
-                ))
+                <Span
+                >
+                  {`Acertos: ${result.Acertos} - Concurso: ${result.Concurso}`}
+                </Span>
               }
-            </tr>
+            </Div>
           ))
         }
-      </tbody>
-    </table >
+      </Section>
+      <Title>{ `Desvio padrão: ${std.toFixed(4)}` }</Title>
+    </>
   )
   return (
     data.length > 0 && table
-    // <table>
-    //   <thead>
-    //     <tr>
-    //       {
-    //         Object.keys(results[0]).map((el, i) => (
-    //           <th
-    //             key={i}
-    //           >
-    //             {el}
-    //           </th>
-    //         ))
-    //       }
-    //     </tr>
-    //   </thead>
-    // </table >
   )
 }
 

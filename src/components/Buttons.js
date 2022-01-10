@@ -46,21 +46,11 @@ function Buttons() {
     numbers,
     setNumbers,
     buttonAttr,
+    setResults,
     setOrderBy
   } = useContext(LotoContext);
 
   const [radio, setRadio] = useState('');
-  // const sort = () => {
-  //   if (orderBy) {
-  //     const sortedResults = results.sort((a, b) => {
-  //       const fieldA = a[orderBy];
-  //       const fieldB= b[orderBy];
-  //       return fieldB - fieldA;
-  //     });
-  //     return sortedResults;
-  //   }
-  //   return results;
-  // }
 
   return (
     <>
@@ -104,6 +94,7 @@ function Buttons() {
         </Button>
         <Button
           onClick={() => {
+            setResults([]);
             setNumbers([]);
             const keys = Object.keys(buttonAttr);
             keys.forEach((el) => buttonAttr[el] = false);
