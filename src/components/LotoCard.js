@@ -13,7 +13,7 @@ display: flex;
 flex-direction: column;
 justify-content: center;
 height: 500px;
-margin: 40px auto;
+margin: 10px auto;
 width: 300px
 `;
 

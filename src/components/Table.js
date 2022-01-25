@@ -2,7 +2,6 @@ import React, { useContext } from 'react';
 import styled, { css } from 'styled-components';
 import LotoContext from '../context/LotoContext';
 import '../styles/table.css';
-import standardDeviation from '../helpers/standardDeviation';
 
 const Div = styled.div`
 border: 1px solid gray; 
@@ -33,13 +32,12 @@ width: 100%;
 
 const Title = styled.h1`
 text-align: center;
+margin-bottom: 10px;
 `;
 
 function Table() {
   const { results, orderBy, sort } = useContext(LotoContext);
   const data = orderBy ? sort() : results;
-
-  const std = standardDeviation();
 
   const table = (
     <>
@@ -60,7 +58,6 @@ function Table() {
           ))
         }
       </Section>
-      <Title>{ `Desvio padrão: ${std.toFixed(4)}` }</Title>
     </>
   )
   return (

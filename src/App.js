@@ -1,12 +1,17 @@
 import styled from 'styled-components';
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+} from "react-router-dom";
 import Lotofacil from "./pages/Lotofacil";
 import './styles/lotofacil.css';
 import Table from "./components/Table";
 import Buttons from "./components/Buttons";
 import Counter from "./components/Counter";
 import Stats from './components/Stats';
-import background from './images/loto.jpg';
-
+import Home from './pages/Home';
+import Results from './components/Results';
 
 const Main = styled.main`
 height: 100vh;
@@ -22,21 +27,31 @@ margin-top: ${props => props.marginTop};
 
 function App() {
   return (
-    <Main background={background}>
-      <Section marginTop={'30px'}>
-        <Buttons />
-        <Counter />
-      </Section>
-      <Section >
-        <Lotofacil />
-      </Section>
-      <Section >
-        <Stats />
-      </Section>
-      <Section >
-        <Table />
-      </Section>
-    </Main>
+
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Home />} >
+          <Route path="lotofacil" element={
+            <Main>
+              <Section marginTop={'30px'}>
+                <Buttons />
+                <Counter />
+                <Results />
+              </Section>
+              <Section >
+                <Lotofacil />
+              </Section>
+              <Section >
+                <Stats />
+              </Section>
+              <Section >
+                <Table />
+              </Section>
+            </Main>
+          } />
+        </Route>
+      </Routes>
+    </BrowserRouter>
   );
 }
 
