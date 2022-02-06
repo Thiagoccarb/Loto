@@ -32,7 +32,7 @@ width: 100%;
 
 const Title = styled.h1`
 text-align: center;
-margin-bottom: 10px;
+margin-bottom: 20px;
 `;
 
 function Table() {

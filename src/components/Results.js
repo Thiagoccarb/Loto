@@ -1,8 +1,7 @@
 import React, { useContext } from 'react';
+import { useLocation } from 'react-router-dom';
 import styled from 'styled-components';
 import LotoContext from '../context/LotoContext';
-import standardDeviation from '../helpers/standardDeviation';
-
 
 const H1 = styled.h1`
 color:'black';
@@ -14,12 +13,10 @@ text-align: center;
 
 function Results() {
   const { results } = useContext(LotoContext);
-  const std = standardDeviation();
+  const { pathname } = useLocation();
+  const prizedElements = pathname === '/lotofacil' ? results.length : results.filter(({ Acertos }) => Acertos >= 4).length
   return (
-    <>
-      <H1>{`Jogos premiados: ${results.length}`}</H1>
-      <H1>{`Desvio padrão: ${std.toFixed(2)}`}</H1>
-    </>
+    results.length > 0 && <H1>{`Jogos premiados:${prizedElements}`}</H1>
   )
 };
 

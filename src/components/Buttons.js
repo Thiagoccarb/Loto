@@ -1,4 +1,5 @@
 import React, { useContext, useState } from 'react';
+import { useLocation } from 'react-router-dom';
 import styled from 'styled-components';
 import LotoContext from '../context/LotoContext';
 
@@ -40,17 +41,42 @@ transition: 0.2s linear;
 width: 100px
 `;
 
+const LastDrawButton = styled.button`
+background-color: blue;
+&:disabled {
+  background-color: gray;
+}
+&:hover {
+  background-color: darkblue;
+}
+border: none;
+border-radius: 5px;
+color: white;
+font-weight: 700;
+position: relative;
+height: 30px;
+left: 50%;
+margin-left: -90px;
+align-self: center;
+transition: 0.2s linear;
+width: 180px;
+`;
+
 function Buttons() {
   const {
     check,
+    checklastDraw,
+    checkLastMegasenaDraw,
+    checkMegasena,
     numbers,
     setNumbers,
     buttonAttr,
     setResults,
     setOrderBy
   } = useContext(LotoContext);
-
+  
   const [radio, setRadio] = useState('');
+  const { pathname } = useLocation();
 
   return (
     <>
@@ -80,7 +106,7 @@ function Buttons() {
           Concurso
         </Label>
         <Button
-          onClick={ () => setOrderBy(radio)}
+          onClick={() => setOrderBy(radio)}
           disabled={!radio}
         >
           Ordenar
@@ -88,7 +114,8 @@ function Buttons() {
       </Div1>
       <Div>
         <Button
-          onClick={ () => check(numbers) }
+          onClick={() => pathname === '/lotofacil'
+          ? check(numbers) : checkMegasena(numbers)}
         >
           Verificar
         </Button>
@@ -104,6 +131,12 @@ function Buttons() {
           Limpar
         </Button>
       </Div>
+      <LastDrawButton
+        onClick={() => pathname === '/lotofacil'
+          ? checklastDraw(numbers) : checkLastMegasenaDraw(numbers)}
+      >
+        Verificar último sorteio
+      </LastDrawButton>
     </>
   )
 };

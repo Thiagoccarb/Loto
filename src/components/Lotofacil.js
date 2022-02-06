@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import LotoCard from '../components/LotoCard.js';
+import LotoCard from './LotoCard.js';
 
 
 const Title = styled.h1`
@@ -13,7 +13,7 @@ function Lotofacil() {
     <Title>
       Cartela
     </Title>
-    <LotoCard cardType={'Lotofacil'} maxNumber={25} />
+    <LotoCard cardType={'Lotofacil'} maxNumber={25} size="30px" />
     </>
   );
 };

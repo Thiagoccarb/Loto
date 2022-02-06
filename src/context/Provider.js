@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import LotoContext from './LotoContext';
-import draw from '../sorteios';
+import lotofacilDraws from '../lotofacilSorteios.json';
+import megasenaDraws from '../megasenaSorteios.json';
+
 
 const LotoProvider = ({ children }) => {
   const [numbers, setNumbers] = useState([]);
@@ -10,17 +12,17 @@ const LotoProvider = ({ children }) => {
   const [orderBy, setOrderBy] = useState('');
 
   const sort = () => {
-      const sortedResults = results.sort((a, b) => {
-        const fieldA = a[orderBy];
-        const fieldB= b[orderBy];
-        return fieldB - fieldA;
-      });
-      return sortedResults;
+    const sortedResults = results.sort((a, b) => {
+      const fieldA = a[orderBy];
+      const fieldB = b[orderBy];
+      return fieldB - fieldA;
+    });
+    return sortedResults;
   }
 
-  const check = (selectedNumbers) => {
+  const checklotofacil = (selectedNumbers) => {
     let array = [];
-    draw.forEach(({ Concurso, Sorteio }) => {
+    lotofacilDraws.forEach(({ Concurso, Sorteio }) => {
       let count = 0;
       Sorteio.forEach((number) => {
         selectedNumbers.forEach((selectedNumber, i) => {
@@ -32,14 +34,63 @@ const LotoProvider = ({ children }) => {
       let obj = { Acertos: count, Concurso };
       array = [...array, obj]
     })
-    setResults(array.filter((el) => el.Acertos >= 12))
+    setResults(array.filter((el) => el.Acertos >= 11))
+  };
+
+  const checkLastLotofacilDraw = (selectedNumbers) => {
+    const lastDraw = lotofacilDraws[0];
+    let count = 0;
+    const { Sorteio, Concurso } = lastDraw
+    Sorteio.forEach((number) => {
+      selectedNumbers.forEach((selectedNumber) => {
+        if (number === selectedNumber) {
+          count += 1;
+        }
+      })
+    })
+    setResults([{ Acertos: count, Concurso }])
+  };
+
+  const checkMegasena = (selectedNumbers) => {
+    let array = [];
+    megasenaDraws.forEach(({ concurso, dezenas }) => {
+      let count = 0;
+      dezenas.forEach((number) => {
+        selectedNumbers.forEach((selectedNumber) => {
+          if (number === selectedNumber) {
+            count += 1;
+          }
+        })
+      })
+      let obj = { Acertos: count, Concurso: concurso };
+      console.log(obj);
+      array = [...array, obj]
+    })
+    setResults(array);
+  };
+
+  const checkLastMegasenaDraw = (selectedNumbers) => {
+    const lastDraw = megasenaDraws[megasenaDraws.length - 1];
+    let count = 0;
+    const { concurso, dezenas } = lastDraw
+    dezenas.forEach((number) => {
+      selectedNumbers.forEach((selectedNumber) => {
+        if (number === selectedNumber) {
+          count += 1;
+        }
+      })
+    })
+    setResults([{ Acertos: count, Concurso: concurso }])
   };
 
   const context = {
     numbers,
     results,
     setResults,
-    check,
+    check: checklotofacil,
+    checklastDraw: checkLastLotofacilDraw,
+    checkMegasena,
+    checkLastMegasenaDraw,
     setNumbers,
     buttonAttr,
     setButtonAttr,

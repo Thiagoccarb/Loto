@@ -30,7 +30,7 @@ const titleEffect = keyframes`
 `;
 
 const Main = styled.main`
-${({ display }) => display && css`
+${({ display }) => !display && css`
   display: none;
 `}
 width: 100%;
@@ -46,7 +46,7 @@ font-weight: 700;
 color: white;
 position: absolute;
 text-align: center;
-top: 30px;
+top: 5px;
 left: 50%;
 margin-left: -379px;
 text-shadow: 0px 0px 8px rgba(255, 255, 255, 1);
@@ -59,7 +59,7 @@ font-weight: 700;
 color: white;
 position: absolute;
 text-align: center;
-top: 100px;
+top: 90px;
 left: 50%;
 margin-left: -236px;
 `
@@ -153,7 +153,7 @@ var styles = {
 
 function Home() {
   const location = useLocation();
-  const validateDisplay = location.pathname.includes('/');
+  const validateDisplay = location.pathname === '/';
   return (
     <>
       <Header>

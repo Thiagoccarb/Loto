@@ -1,4 +1,4 @@
-const draws = require('../sorteios');
+const draws = require('../lotofacilSorteios.json');
 
 const numbers = Array.from({ length: 25 }, (_v, k) => k + 1);
 let numbersPercentage = {};
@@ -17,7 +17,5 @@ draws.forEach(({ Sorteio }) => {
 
 const array = Object.entries(numbersPercentage)
   .sort((a, b) => b[1] - a[1]);
-
-console.log(draws.length);
 
 module.exports = array;

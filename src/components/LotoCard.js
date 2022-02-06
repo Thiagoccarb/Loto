@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
 import LotoNumber from './LotoNumber';
 import styled, { css } from 'styled-components';
 import LotoContext from '../context/LotoContext';
@@ -14,7 +15,7 @@ flex-direction: column;
 justify-content: center;
 height: 500px;
 margin: 10px auto;
-width: 300px
+width: 280px
 `;
 
 const Title = styled.h1`
@@ -50,7 +51,7 @@ ${props => props.numbers.length === 0 && css`
 `}
 `;
 
-function LotoCard({ cardType, maxNumber }) {
+function LotoCard({ cardType, maxNumber, size, margin, fontSize }) {
   const [array, setArray] = useState([]);
   const { buttonAttr, numbers } = useContext(LotoContext);
 
@@ -95,6 +96,9 @@ function LotoCard({ cardType, maxNumber }) {
               isActive={buttonAttr[i + 1]}
               key={i}
               number={el}
+              size={size}
+              margin={margin}
+              fontSize={fontSize}
             />
           ))
         }
@@ -107,6 +111,21 @@ function LotoCard({ cardType, maxNumber }) {
       }
     </Section>
   )
+};
+
+LotoCard.propTypes = {
+  size: PropTypes.string,
+  margin: PropTypes.string,
+  fontSize: PropTypes.string,
+  cardType: PropTypes.string,
+  maxNumber: PropTypes.number,
+  isActive: PropTypes.bool,
+};
+
+LotoCard.defaultProps = {
+  size: '30px',
+  margin: "10px",
+  fontSize: "15px"
 };
 
 export default LotoCard;
