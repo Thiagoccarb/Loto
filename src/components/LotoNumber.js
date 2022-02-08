@@ -11,7 +11,7 @@ color: purple;
 font-size: 10px;
 font-weight:700;
 height: ${({ size }) => size};
-margin: ${({ margin }) => margin};
+margin: ${({ margin }) => `5px ${margin}`};
 padding: 2px;
 width: ${({ size }) => size};
 `;

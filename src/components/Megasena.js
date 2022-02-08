@@ -13,7 +13,7 @@ function Megasena() {
     <Title>
       Cartela
     </Title>
-    <LotoCard cardType={'Megasena'} maxNumber={60} size="18px" margin="5px" fontSize="10px" />
+    <LotoCard cardType={'Megasena'} maxNumber={60} size="18px" margin="12px" fontSize="10px" />
     </>
   );
 };
