@@ -6,6 +6,7 @@ const readFile = async (path) => {
     const file = JSON.parse(fileJSON);
     return file;
   } catch (err) {
+    console.error(err);
     return null;
   }
 };
